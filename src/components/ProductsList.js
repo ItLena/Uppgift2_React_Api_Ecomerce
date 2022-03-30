@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 
-export default function ProductsList() {
-
+export default function ProductsList(props) {
+    const {onAdd} = props;
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProduct] = useState([]);
   console.log("CardList")
@@ -29,7 +29,7 @@ export default function ProductsList() {
           <h3>Price: {item.price}$</h3>    
           <h>{item.raiting}</h>
            <Link to={`/product/${item.id}`}>Show details</Link>
-           <button  className="btn-shop">Add to Cart</button>
+           <button onClick={() =>onAdd(item)} className="btn-shop">Add to Cart</button>
         </div>)});
    console.log(filteredProducts)   
 

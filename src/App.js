@@ -10,17 +10,25 @@ import data from "./components/data"
 
 
 export default function App() {
- const [shoppingBag, setShoppingBag] = useState([]);
-
+ const [cartItems, setCartItems] = useState([]);
+const onAdd= (product)=>{
+  const exist = cartItems.find(x=>x.id === product.id);
+  if(exist == true){
+    setCartItems(cartItems.map(x=>x.id===product.id ? {...exist, count: exist.count +1} : x));
+  }
+  else {
+    setCartItems([...cartItems, {...product, count: 1}])
+  }
+}
   return (
     <Router >
       <Header />  
       <Foot />  
       <Routes>
         <Route path="/" exact element = {<Home/>} />
-        <Route path="/productsList" exact element= {<ProductsList />} />
+        <Route path="/productsList" exact element= {<ProductsList onAdd={onAdd}/>} />
         <Route path="/product/:id" exact element = {<Product/>} />
-        <Route path="/cart" exact element = {<Cart />} />
+        <Route path="/cart" exact element = {<Cart onAdd={onAdd} cartItems={cartItems}/>} />
       </Routes>  
     </Router>
   )
