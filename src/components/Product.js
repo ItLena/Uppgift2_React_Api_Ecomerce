@@ -1,15 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from "react-router"
-import { fetchProducts } from "./data"
 
 
-export default function Card() {
+
+export default function Product() {
 const {id} = useParams();
 const [product, setProduct] = useState([]);
-
-console.log("hej")
-
-console.log(id)
 
 useEffect(()=>{
   async function getProduct(id) {
@@ -17,11 +13,12 @@ useEffect(()=>{
    await fetch('https://fakestoreapi.com/products/'+ id)
   .then(
     response => response.json())
-  .then(data=>setProduct(data));
+  .then(data=>{setProduct(data)
+  console.log(data)});
 }
  getProduct(id);
 
-}, [])
+}, [id])
 
 
 console.log(product.rating)
@@ -37,6 +34,7 @@ console.log(product.rating)
             <p><b>Price:</b>{product.price}$</p>  
             <p><b>Rating:</b> {product.rating && product.rating.rate} (Voited: {product.rating && product.rating.count})</p>  
           </span>
+         
     </div>
   )
    

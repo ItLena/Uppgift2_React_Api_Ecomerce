@@ -1,13 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Header from "./components/Header"
-import CardList from "./components/CardList"
-import Card from "./components/Card"
+import ProductsList from "./components/ProductsList"
+import Product from "./components/Product"
 import Home from "./components/Home"
 import Foot from "./components/Foot"
+import Cart from "./components/Cart"
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import data from "./components/data"
 
 
 export default function App() {
+ const [shoppingBag, setShoppingBag] = useState([]);
 
   return (
     <Router >
@@ -15,8 +18,9 @@ export default function App() {
       <Foot />  
       <Routes>
         <Route path="/" exact element = {<Home/>} />
-        <Route path="/cardList" exact element= {<CardList/>} />
-        <Route path="/card/:id" exact element = {<Card/>} />
+        <Route path="/productsList" exact element= {<ProductsList />} />
+        <Route path="/product/:id" exact element = {<Product/>} />
+        <Route path="/cart" exact element = {<Cart />} />
       </Routes>  
     </Router>
   )

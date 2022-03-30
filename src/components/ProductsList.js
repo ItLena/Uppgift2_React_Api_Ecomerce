@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 
-export default function CardList() {
+export default function ProductsList() {
 
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProduct] = useState([]);
@@ -19,7 +19,7 @@ export default function CardList() {
         .then(data=>{setProducts(data)
             setFilteredProduct(data)})
     }, [])
-
+  
     const productsList = filteredProducts.map( item =>{        
       return(
         <div className="card-box" key={item.id}>
@@ -28,7 +28,8 @@ export default function CardList() {
           <img className="img-product" src={item.image} alt="" />
           <h3>Price: {item.price}$</h3>    
           <h>{item.raiting}</h>
-           <Link to={`/card/${item.id}`}>Show details</Link>
+           <Link to={`/product/${item.id}`}>Show details</Link>
+           <button  className="btn-shop">Add to Cart</button>
         </div>)});
    console.log(filteredProducts)   
 
