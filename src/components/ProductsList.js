@@ -31,9 +31,7 @@ export default function ProductsList(props) {
            <Link to={`/product/${item.id}`}>Show details</Link>
            <button onClick={() =>onAdd(item)} className="btn-shop">Add to Cart</button>
         </div>)});
-   console.log(filteredProducts)   
-
-
+   
   return ( 
     <div className="main-container">      
        <input className ="input-search" type="search" placeholder='Search after product'onChange={onSearchChange} /> 

@@ -11,24 +11,37 @@ import data from "./components/data"
 
 export default function App() {
  const [cartItems, setCartItems] = useState([]);
+ const count = 0;
+
 const onAdd= (product)=>{
   const exist = cartItems.find(x=>x.id === product.id);
-  if(exist == true){
+  if(exist){
     setCartItems(cartItems.map(x=>x.id===product.id ? {...exist, count: exist.count +1} : x));
   }
   else {
     setCartItems([...cartItems, {...product, count: 1}])
   }
 }
+
+const onRemove = (product) =>{
+  const exist = cartItems.find(x=>x.id ===product.id);
+
+  if(exist.count === 1) {
+    setCartItems(cartItems.filter(x =>x.id !== product.id))
+  }
+  else {
+    setCartItems(cartItems.map(x=>x.id===product.id ? {...exist, count: exist.count -1} : x));
+  }
+}
   return (
     <Router >
-      <Header />  
+      <Header countItems = {cartItems.length}/>  
       <Foot />  
       <Routes>
         <Route path="/" exact element = {<Home/>} />
         <Route path="/productsList" exact element= {<ProductsList onAdd={onAdd}/>} />
         <Route path="/product/:id" exact element = {<Product/>} />
-        <Route path="/cart" exact element = {<Cart onAdd={onAdd} cartItems={cartItems}/>} />
+        <Route path="/cart" exact element = {<Cart onAdd={onAdd} onRemove={onRemove} cartItems={cartItems}/>} />
       </Routes>  
     </Router>
   )

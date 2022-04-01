@@ -3,7 +3,7 @@ import {useParams} from "react-router"
 
 
 
-export default function Product() {
+export default function Product(onAdd) {
 const {id} = useParams();
 const [product, setProduct] = useState([]);
 
@@ -33,6 +33,7 @@ console.log(product.rating)
             <p><b>Description:</b> {product.description}</p>
             <p><b>Price:</b>{product.price}$</p>  
             <p><b>Rating:</b> {product.rating && product.rating.rate} (Voited: {product.rating && product.rating.count})</p>  
+            <button onClick={() =>onAdd(product)} className="btn-shop">Add to Cart</button> 
           </span>
          
     </div>

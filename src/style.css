@@ -107,7 +107,7 @@ body{
 }
 .cart-box{
     display: flex; 
-    flex-direction: column;
+    justify-content:space-between;    
     margin: 2% 5%;
     padding: 3%; 
     border-radius: 15px;
@@ -115,13 +115,14 @@ body{
 }
 .btn-container{
     margin-left: 3%;
-    max-width: 50px;
+    max-width: 60px;
     display: flex;
     justify-content: space-between;
 }
 
 .btn-add:hover{
-    background-color: green;
+    background-color:  rgb(63, 92, 72);
+    color: white;
 }
 .footer{
     display: flex;

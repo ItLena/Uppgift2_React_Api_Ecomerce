@@ -3,7 +3,7 @@ import data from "./data"
 
 export default function Cart(props) {
     const {cartItems, onAdd, onRemove} = props;
-  
+    const sum = cartItems.reduce((a,c)=>a + c.price * c.count, 0) 
    return (
       <div className= "cart-box">
          <h1>Your shopping cart</h1>
@@ -19,9 +19,12 @@ export default function Cart(props) {
                 <button className ="btn-add" onClick={() =>onAdd(item)}>+</button>
                 <button className ="btn-add" onClick={() =>onRemove(item)}>-</button>
                 </span>
-                
             </div> 
         ))}
+
+        {cartItems.length !== 0 && (
+           <h4>Total price: {sum} $</h4>
+        )}
       </div>
     
   )
