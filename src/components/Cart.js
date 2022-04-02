@@ -12,18 +12,18 @@ export default function Cart(props) {
         </div>
 
         {cartItems.map((item)=>(
-            <div key={item.id}>
-                <h3>{item.title}</h3> 
-                <span>{item.count} x ${item.price.toFixed(2)}</span>
-                <span className="btn-container">
+            <div className="grid-items" key={item.id}>
+                <div>{item.title}</div> 
+                <div>{item.count} x ${item.price.toFixed(2)}</div>
+                <div className="btn-container">
                 <button className ="btn-add" onClick={() =>onAdd(item)}>+</button>
                 <button className ="btn-add" onClick={() =>onRemove(item)}>-</button>
-                </span>
+                </div>
             </div> 
         ))}
 
         {cartItems.length !== 0 && (
-           <h4>Total price: {sum} $</h4>
+           <h4>Total price: {sum.toFixed(2)} $</h4>
         )}
       </div>
     
