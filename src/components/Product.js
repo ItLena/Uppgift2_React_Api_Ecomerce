@@ -3,10 +3,10 @@ import {useParams} from "react-router"
 
 
 
-export default function Product(onAdd) {
+export default function Product(props) {
 const {id} = useParams();
 const [product, setProduct] = useState([]);
-
+const {onAdd} = props;
 useEffect(()=>{
   async function getProduct(id) {
  
@@ -23,10 +23,10 @@ useEffect(()=>{
 
 console.log(product.rating)
   return(
-    <div className="card-details" >
+    <div className="card-details" key={product.id}>
          
           <img className="img-details" src={product.image} alt="" />
-          <span className="product-text"> 
+          <span className="product-text"  > 
             <h4>{product.title}</h4>
             <p><b>Product Id:</b> {product.id}</p> 
             <p><b>Category:</b> {product.category}</p>

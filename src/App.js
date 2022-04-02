@@ -40,7 +40,7 @@ const onRemove = (product) =>{
       <Routes>
         <Route path="/" exact element = {<Home/>} />
         <Route path="/productsList" exact element= {<ProductsList onAdd={onAdd}/>} />
-        <Route path="/product/:id" exact element = {<Product/>} />
+        <Route path="/product/:id" exact element = {<Product onAdd={onAdd}/>} />
         <Route path="/cart" exact element = {<Cart onAdd={onAdd} onRemove={onRemove} cartItems={cartItems}/>} />
       </Routes>  
     </Router>
